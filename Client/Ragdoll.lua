@@ -1,37 +1,27 @@
--- local ragdoll = false
--- function setRagdoll(flag)
---   ragdoll = flag
---   whileRag()
--- end
+isInRagdoll = false
+local cooldown = false
 
--- function whileRag()
---   Citizen.CreateThread(function()
---     while ragdoll do
---       Citizen.Wait(0)
---       if ragdoll then
---         SetPedToRagdoll(PlayerPedId(), 1000, 1000, 0, 0, 0, 0)
---       end
---     end
---   end)
--- end
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(10)
+        if isInRagdoll then
+            SetPedToRagdoll(PlayerPedId(), 1000, 1000, 0, 0, 0, 0)
+        end
+    end
+end)
 
--- ragdol = true
--- RegisterNetEvent("Ragdoll")
--- AddEventHandler("Ragdoll", function()
--- 	if ( ragdol ) then
--- 		setRagdoll(true)
--- 		ragdol = false
--- 	else
--- 		setRagdoll(false)
--- 		ragdol = true
--- 	end
--- end)
+for _, command in pairs({"ragdoll", "suelo"}) do
+	RegisterKeyMapping(command, "/suelo || /ragdoll", "keyboard", Config.RagdollKeybind)
+    RegisterCommand(command, function()
+        ragdoll()
+    end)
+end
 
--- RegisterCommand("rag", function(source, args, raw)
---     TriggerEvent("Ragdoll")
--- end)
-
--- RegisterKeyMapping('(Anim) Ragdoll', 'RagDoll', 'keyboard', Config.RagdollKeybind)
--- RegisterCommand('RagDoll', function()
---   TriggerEvent("Ragdoll")
--- end)
+function ragdoll()
+    if not cooldown and Config.RagdollEnabled and IsPedOnFoot(PlayerPedId()) then
+        cooldown = true
+        isInRagdoll = not isInRagdoll
+        Citizen.Wait(2000)
+        cooldown = false
+    end
+end
