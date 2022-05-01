@@ -21,7 +21,8 @@ Citizen.CreateThread(function()
         DebugPrint('[^2dpemotes^0] registering cached bind '..k)
         RegisterKeyMapping(k, '(Anim) Anim slot /'..k, 'keyboard', '')
         RegisterCommand(k, function()
-            if not IsPedSittingInAnyVehicle(PlayerPedId()) then
+            local playerPed = PlayerPedId()
+            if not IsPlayerFreeAiming(PlayerId()) and not IsPedSittingInAnyVehicle(playerPed) and not IsPedFalling(playerPed) and not IsPedRagdoll(playerPed) then
                 EmoteCommandStart(nil,{v, 0})
             end
         end)
