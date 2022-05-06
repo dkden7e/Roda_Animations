@@ -192,7 +192,7 @@ $(function() {
         $('.shareddance').hide()
         $('.expresionlista').hide()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Animations')
+        $('.menuanimaciones h1').text('Animaciones')
     });
     
     $('.fa-person-carry').click(function() {
@@ -214,7 +214,7 @@ $(function() {
         $('.shareddance').hide()
         $('.expresionlista').hide()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Objects')
+        $('.menuanimaciones h1').text('Animaciones con prop')
     });
     $('.fa-person-sign').click(function() {
         AddActive('fa-grin-hearts', false, 'activeleft')
@@ -235,7 +235,7 @@ $(function() {
         $('.expresionlista').hide()
         $('.shareddance').hide()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Dances')
+        $('.menuanimaciones h1').text('Bailes')
     });
 
     $('.fa-walking').click(function() {
@@ -257,7 +257,7 @@ $(function() {
         $('.shareddance').hide()
         $('.expresionlista').hide()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Walks') 
+        $('.menuanimaciones h1').text('Formas de caminar') 
     });
 
     $('.fa-people-arrows').click(function() {
@@ -279,7 +279,7 @@ $(function() {
         $('.shareddance').hide()
         $('.expresionlista').hide()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Shared Animations') 
+        $('.menuanimaciones h1').text('Animaciones compartidas') 
     });
 
     $('.fa-people-carry').click(function() {
@@ -301,7 +301,7 @@ $(function() {
         $('.shareddance').show()
         $('.expresionlista').hide()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Shared Dances') 
+        $('.menuanimaciones h1').text('Bailes compartidos') 
     });
 
     $('.fa-flushed').click(function() {
@@ -323,7 +323,7 @@ $(function() {
         $('.shareddance').hide()
         $('.expresionlista').show()
         $('.aimLista').hide()
-        $('.menuanimaciones h1').text('Expresions') 
+        $('.menuanimaciones h1').text('Expresiones') 
     });
 
     $('.fa-crosshairs').click(function() {
@@ -345,7 +345,7 @@ $(function() {
         $('.shareddance').hide()
         $('.expresionlista').hide()
         $('.aimLista').show()
-        $('.menuanimaciones h1').text('Aim Type') 
+        $('.menuanimaciones h1').text('Estilos de puntería') 
     });
 
 

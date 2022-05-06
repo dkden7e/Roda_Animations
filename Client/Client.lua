@@ -52,6 +52,17 @@ RegisterKeyMapping('openemote', 'Open Roda Animations', 'keyboard', Config.OpenK
 RegisterNUICallback("callAnimations" , function(data, cb)
     for a,b in pairsByKeys(DP.Emotes) do
         x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
+        SendNUIMessage({
+            action = 'LoadEmotes';
+            emotes = z;
+            emotename = a;
+        })
+    end
+
+    for a,b in pairsByKeys(DP.AnimalEmotes) do
+        x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕🐕 " .. z) or ("🐕 " .. z))
         SendNUIMessage({
             action = 'LoadEmotes';
             emotes = z;
@@ -61,6 +72,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
 
     for a,b in pairsByKeys(DP.PropEmotes) do
         x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'LoadObjects';
             emotes = z;
@@ -69,6 +81,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
     end
     for a,b in pairsByKeys(DP.Dances) do
         x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'LoadDances';
             emotes = z;
@@ -78,6 +91,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
 
     for a,b in pairsByKeys(DP.Shared) do
         x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'LoadShared';
             emotes = z;
@@ -86,6 +100,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
     end 
     for a,b in pairsByKeys(DP.Walks) do
         x = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'LoadWalk';
             emotes = a;
@@ -95,6 +110,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
 
     for a,b in pairsByKeys(DP.Dances) do
         x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'sharedDances';
             emotes = z;
@@ -104,6 +120,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
 
     for a,b in pairsByKeys(DP.Expressions) do
         x,y,z = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'Expresions';
             emotes = a;
@@ -113,6 +130,7 @@ RegisterNUICallback("callAnimations" , function(data, cb)
 
     for a,b in pairsByKeys(DP.Aim) do
         x = table.unpack(b)
+        z = ((b.AnimationOptions and b.AnimationOptions.Exclusive) and ("🆕 " .. z) or z)
         SendNUIMessage({
             action = 'LoadAim';
             emotes = a;
@@ -132,12 +150,8 @@ end)
 
 
 RegisterNUICallback("executeemote" , function(data, cb)
+    print(json.encode(data))
     local playerPed = PlayerPedId()
-    SetNuiFocus(false, false)
-    SendNUIMessage({
-        action = 'exit'
-    })
-    Animaciones_isOpen = false
     if data.type == 'walk' then 
         ExecuteCommand('walk '..data.emote)
     elseif data.type == 'emote' then 
